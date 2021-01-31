@@ -1,0 +1,29 @@
+version: "3.3"
+services:
+  glab-www:
+    build: .
+    image: glab-www
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.glab-www.rule=Host(`localhost`)"
+      - "traefik.http.routers.glab-www.entryPoints=web"
+      - "traefik.http.services.glab-www.loadBalancer.server.port=8080"
+      - "traefik.http.services.glab-www.loadBalancer.sticky.cookie"
+      - "traefik.docker.network=traefik_proxy"
+      - "orbiter=true"
+    # volumes:
+    #   - ./nginx/:/usr/share/nginx/html:ro
+    #   - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    networks:
+      - traefik_proxy
+    # ports:
+    #   - "4000:4000"
+    deploy:
+      mode: replicated
+      replicas: 2
+      labels:
+        - "orbiter=true"
+
+networks:
+  traefik_proxy:
+    external: true

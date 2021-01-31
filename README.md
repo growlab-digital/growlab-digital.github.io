@@ -1,4 +1,4 @@
-<sub>[growlab-digital.github.io](https://growlab-digital.github.io)</sub>
+<sub>[growlab.digital](https://growlab.digital)</sub>
 
 ## 🧪 growlab.digital©
 
